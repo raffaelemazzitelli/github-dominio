@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment2
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: webapp2
+  template:
+    metadata:
+      labels:
+        app: webapp2
+    spec:
+      containers:
+      - name: webapp2
+        image: europe-west1-docker.pkg.dev/rare-phoenix-413915/my-repository/web-app-2:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: IMAGE
+          value: "2-sad"
+        - name: MESSAGE
+          value: "I am Demo2 - Terraform made me this!!!"

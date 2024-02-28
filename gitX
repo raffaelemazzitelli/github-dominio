@@ -1,0 +1,13 @@
+#!/bin/bash
+# Location: /some/path/git (Ensure /some/path is in your PATH before the actual git command)
+
+if [[ $1 == "push" && $2 == "--domino" ]]; then
+  # Your custom behavior here
+  echo "Executing custom script for domino..."
+  python domino.py "${@:3}"
+else
+  # Proxy the call to the actual Git command
+  command git "$@"
+fi
+
+#export PATH=./:$PATH

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment1
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: webapp1
+  template:
+    metadata:
+      labels:
+        app: webapp1
+    spec:
+      containers:
+      - name: webapp1
+        image: europe-west1-docker.pkg.dev/rare-phoenix-413915/my-repository/web-app-1:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+        - name: IMAGE
+          value: "1-sad"
+        - name: MESSAGE
+          value: "I am Demo1 and things don't look good anymore!!!!"
